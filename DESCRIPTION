@@ -1,0 +1,9 @@
+Package: ppai
+Type: Package
+Title: Analyze Paipai data of Shanghai
+Version: 0.1.0
+Authors@R: person("Xiaming", "Chen", email = "chen@xiaming.me", role = c("aut", "cre"))
+Description: Analyze Paipai data of Shanghai
+License: MIT
+LazyData: FALSE
+RoxygenNote: 5.0.1

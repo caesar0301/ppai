@@ -10,5 +10,5 @@ Depends:
   dplyr,
   ggplot2
 License: MIT
-LazyData: FALSE
+LazyData: TRUE
 RoxygenNote: 5.0.1

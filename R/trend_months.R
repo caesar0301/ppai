@@ -17,7 +17,11 @@ trend_months <- function(years=2016:2016, months=1:6, min_lag=0, max_lag=60) {
     theme_bw() + geom_line(lwd=1) + xlab("Lag (seconds)") + ylab("Price-Warning") +
     theme(legend.position= c(0.1, 0.77),
           legend.title = element_blank(),
-          legend.text = element_text(size = 16, face = "bold")) +
-    geom_vline(xintercept=c(45, 50), color='orange', lty=2) +
-    geom_vline(xintercept=c(40, 55), color='royalblue', lty=2)
+          legend.text = element_text(size = 16, face = "bold"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank()) +
+    geom_hline(yintercept=seq(0, max(lastmin$price_delta) + 300, 300),
+               color='grey', lty=2, lwd=0.25) +
+    geom_vline(xintercept=seq(0,60,5), color='grey', lty=2, lwd=0.25) +
+    geom_vline(xintercept=seq(35, 55, 5), color='orange', lty=2, lwd=0.35)
 }

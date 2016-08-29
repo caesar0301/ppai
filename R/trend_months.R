@@ -10,11 +10,21 @@
 #' @return a gglot2 instance
 #' @export
 trend_months <- function(years=2016:2016, months=1:6, min_lag=0, max_lag=60) {
-  lastmin <- ppai %>% dplyr::filter(year %in% years & month %in% months &
-                                      lag_sec >= min_lag & lag_sec <= max_lag)
+  ## filter data
+  lastmin <- ppai %>%
+    dplyr::filter(year %in% years & month %in% months &
+                lag_sec >= min_lag & lag_sec <= max_lag)
   lastmin <- lastmin %>% mutate(grpkey=paste(year, month, sep="-"))
+
+  ## set presentation range of delta price
+  price_min <- min(lastmin$price_delta)
+  price_max <- max(lastmin$price_delta)
+
+  ## determine grid positions
   ggplot(lastmin, aes(lag_sec, price_delta, group=grpkey, col=grpkey)) +
-    theme_bw() + geom_line(lwd=1) + xlab("Lag (seconds)") + ylab("Price-Warning") +
+    theme_bw() + geom_line(lwd=1) +
+    xlab("Lag (seconds)") + ylab("Price-Warning") +
+    ylim(price_min, price_max) +
     theme(legend.position= c(0.1, 0.77),
           legend.title = element_blank(),
           legend.text = element_text(size = 16, face = "bold"),
